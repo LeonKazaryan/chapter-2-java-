@@ -1,3 +1,4 @@
+
 let number = 0;
 console.log("В коробке: " + number +" яблок.");
 
