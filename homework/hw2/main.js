@@ -41,7 +41,7 @@ let negativetuple = [];
 const tuplesort = applescopy => {
   for (let i = 0; i < applescopy.length; ++i) {
       // ищем цифры для позитивного тюпла
-      if (0 <= apples[i]) {
+      if (0 <= applescopy[i]) {
           applescopy.shift(applescopy[i]);
           positivetuple.unshift(applescopy[i]);
       }
