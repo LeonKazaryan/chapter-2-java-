@@ -74,7 +74,7 @@ const tuplesort = apples => {
 }
 
 
-// выводим значения яблок
+// выводим знначения яблок 
 console.log(tuplesort(apples));
 console.log("Позитивные яблоки: " + positives);
 console.log("Негативные яблоки: " + negatives);
