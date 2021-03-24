@@ -10,16 +10,16 @@ let validForm = {
   username: "anton",
   password: "anton!anton",
   age: "20",
-  height: "",
-  width: "",
+  height: "пара",
+  width: "апрапр",
 };
 
 let invalidForm = {
   username: "anto",
   password: "anto",
   age: "20a",
-  height: "",
-  width: "",
+  height: "апрапр",
+  width: "апра",
 };
 
 const handleSubmit = (form) => {
@@ -110,5 +110,5 @@ const handleSubmit = (form) => {
 /// 
 
 handleSubmit(validForm);
-console.log("-----");
+console.log("------------------------------");
 handleSubmit(invalidForm);
