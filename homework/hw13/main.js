@@ -14,7 +14,7 @@ console.log("Сумма чисел данного числа является: "
 console.log("-------------------------")
 
 function isPalindrome(str) {
-    let strReverse = str.split('').reverse().join(''); 
+    let strReverse = str.split('').reverse().join('');
     if (strReverse === str) {
       return 'Ух-ты, ваше слово "' + str + '" является палиндромом! ^-^ ' ;
     } else {
@@ -25,5 +25,6 @@ function isPalindrome(str) {
   }
 
 console.log(isPalindrome("шавыавыаыввылаш"))
+
 
 console.log("-------------------------")
