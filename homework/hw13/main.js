@@ -26,5 +26,4 @@ function isPalindrome(str) {
 
 console.log(isPalindrome("шавыавыаыввылаш"))
 
-
 console.log("-------------------------")
