@@ -17,7 +17,7 @@ const reverseStringRecursive = (string) => {
   if (true) { // условие остановки
     retrun // заготовленный результат
   } else {
-    return reverseStringRecursive(??) // измененный параметр
+    return reverseStringRecursive() // измененный параметр
   }
 }
 

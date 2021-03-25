@@ -12,7 +12,6 @@
 
 // appleBox.getQuantityString(10) // 10 яблок
 
-
 // ....
 // const pearBox = new Box(["груша", "груши", "груш"]);
 
