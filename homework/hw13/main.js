@@ -27,3 +27,23 @@ function isPalindrome(str) {
 console.log(isPalindrome("шавыавыаыввылаш"))
 
 console.log("-------------------------")
+//ниже это уже не я проектировал
+const isPalindromRecursive = string => {
+  if (string.length === 0 || string.length === 1) {
+    return true;
+  } else {
+    return string[0] === string[string.length - 1] && isPalindromRecursive(string.slice(1, -1))
+  }
+}
+
+console.log("-------------------------")
+
+const numberElementsSumRecursive = (number) => {
+  if (number == 0) {
+    return 0;
+  } else {
+    return (number % 10) + numberElementsSumRecursive(Math.trunc(number / 10));
+  }
+}
+
+console.log("-------------------------")
