@@ -25,7 +25,7 @@ function isPalindrome(str) {
     }
   }
 
-console.log(isPalindrome("шавыавыаыввылаш"))
+console.log(isPalindrome("шалаш"))
 
 console.log("-------------------------")
 //ниже это уже не я проектировал

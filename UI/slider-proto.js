@@ -6,23 +6,22 @@
 let containerWidth = 0;
 let paddingLeft = 0;
 let paddingRight = 0;
-let container = null;
+let big = null;
 
-let block = null;
+let small = null;
 // const dx = 200; // шаг, на котоырй мы смещаем элемент
 // let x = 0; // реальная позицию элемента
 
 let currentSlide = 0;
 let slides = [];
 
-
 const updateContainerWidth = () => {
-  const style = window.getComputedStyle(container); // Получаем расчитанный текущий стиль элемента
+  const style = window.getComputedStyle(big); // Получаем расчитанный текущий стиль элемента
   
   paddingLeft = parseInt(style.paddingLeft);
   paddingRight = parseInt(style.paddingRight);
   
-  containerWidth = container.clientWidth - paddingRight - paddingLeft
+  containerWidth = big.clientWidth - paddingRight - paddingLeft
 }
 
 
@@ -47,7 +46,7 @@ const upadatePostion = () => {
 
   // const halfBlockWidth = block.offsetWidth / 2;
 
-  const min = container.clientWidth - block.offsetWidth - paddingRight;
+  const min = big.clientWidth - small.offsetWidth - paddingRight;
   // const max = containerWidth - block.offsetWidth;
 
   let x = -slides[currentSlide].offsetLeft + paddingLeft;
@@ -60,7 +59,7 @@ const upadatePostion = () => {
 
   console.log(x);
   
-  block.style.transform = "translateX(" + x + "px)";
+  small.style.transform = "translateX(" + x + "px)";
 }
 
 
@@ -81,16 +80,16 @@ window.addEventListener("load", () => {
 
   slides = createArray(createSlide) (10);
 
-  block = $("div", {
+  small = $("div", {
     className: "block",
     // style: {
     //   transform: "translateX(-50px)",
     // }
   }, ...slides);
 
-  container = $("div", {
+  big = $("div", {
     className: "container"
-  }, block);
+  }, small);
 
 
 
@@ -115,9 +114,9 @@ window.addEventListener("load", () => {
   }, buttonLeft, buttonRight);
 
 
-  document.body.append(buttons, container);
+  document.body.append(buttons, big);
   
-  container.style.height = block.offsetHeight + "px";
+  big.style.height = small.offsetHeight + "px";
   updateContainerWidth();
 
   moveSlide(0);

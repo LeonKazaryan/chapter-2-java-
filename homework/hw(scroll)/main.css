@@ -1,0 +1,26 @@
+.container {
+  /* height: 3000px; */
+  margin: 0;
+  padding: 0;
+  background-color: bisque;
+  display:flex;
+  justify-content: space-between;
+}
+
+.circle__off{
+  border-radius: 50%;
+  background-color: black;
+  border: 5px solid black;
+  transition: all 1s linear;
+  height: 50px;
+  width: 50px;
+}
+
+.circle__on{  
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border: 5px solid black;
+  transition: all 1s linear;
+}
