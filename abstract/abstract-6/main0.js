@@ -2,22 +2,12 @@
 
 const sleep = (delay) => new Promise((resolve) => {
   setTimeout(() => {
+    
     console.log("Подождали " + delay);
     resolve(delay);
   }, delay);
 
 });
-
-const cancel = async (delay) => {
-  await sleep(delay);
-  return Promise.reject("Прошло больше " + delay);
-}
-
-const request = async () => {
-  await sleep(1001);
-  return Promise.resolve("DATA");
-}
-
 
 
 window.addEventListener("load", async () => {
@@ -27,48 +17,35 @@ window.addEventListener("load", async () => {
 
   start = Date.now();
 
-  const result = await Promise.race([request(), cancel(1000)]);
+  await sleep(500);
+  await sleep(1000);
   
   console.log("Закончили " + (Date.now() - start));
+
+
+  console.log("Начали");
+
+  start = Date.now();
+  const allRsults = await Promise.all([
+    sleep(500),
+    sleep(1000)
+  ]); // все
+  // Promise.race //гонка
+  
+  console.log("Закончили " + (Date.now() - start), allRsults);
+
+  
+  console.log("Начали");
+
+  start = Date.now();
+  const raceRsult = await Promise.race([
+    sleep(500),
+    sleep(1000)
+  ]); 
+  
+  console.log("Закончили " + (Date.now() - start), raceRsult);
+
 });
-
-
-// window.addEventListener("load", async () => {
-//   let start;
-  
-//   console.log("Начали");
-
-//   start = Date.now();
-
-//   await sleep(500);
-//   await sleep(1000);
-  
-//   console.log("Закончили " + (Date.now() - start));
-
-
-//   console.log("Начали");
-
-//   start = Date.now();
-//   const allRsults = await Promise.all([
-//     sleep(500),
-//     sleep(1000)
-//   ]); // все
-//   // Promise.race //гонка
-  
-//   console.log("Закончили " + (Date.now() - start), allRsults);
-
-  
-//   console.log("Начали");
-
-//   start = Date.now();
-//   const raceRsult = await Promise.race([
-//     sleep(500),
-//     sleep(1000)
-//   ]); 
-  
-//   console.log("Закончили " + (Date.now() - start), raceRsult);
-
-// });
 
 
 

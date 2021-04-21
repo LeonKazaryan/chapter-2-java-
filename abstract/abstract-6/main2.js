@@ -8,13 +8,23 @@ const sleep = (delay) => new Promise((resolve) => {
 
 });
 
+
+let flag = false;
+
+const notice = async (delay) => {
+  await sleep(delay);
+  if (!flag) {
+    console.log("Плохой интернет");
+  }
+}
+
 const cancel = async (delay) => {
   await sleep(delay);
   return Promise.reject("Прошло больше " + delay);
 }
 
 const request = async () => {
-  await sleep(1001);
+  await sleep(1000);
   return Promise.resolve("DATA");
 }
 
@@ -27,9 +37,11 @@ window.addEventListener("load", async () => {
 
   start = Date.now();
 
-  const result = await Promise.race([request(), cancel(1000)]);
-  
-  console.log("Закончили " + (Date.now() - start));
+  notice(5000);
+  const result = await Promise.race([request(), cancel(2000)]);
+  flag = true;
+
+  console.log("Закончили " + (Date.now() - start), result);
 });
 
 
