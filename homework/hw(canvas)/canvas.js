@@ -30,6 +30,7 @@ const draw = (canvas) => {
       CreateTriangle();
       context.closePath();
     }
+
     context.translate(490,130);
     CreateSemicircle();
     context.scale(-1,1);
@@ -40,5 +41,5 @@ const draw = (canvas) => {
 
 //ниже вызываем функцию по созданию круга и передаем значение размера треугольника
 
-  CreatreCircle(25);
+  CreatreCircle(50);
 }

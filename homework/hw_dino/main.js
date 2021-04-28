@@ -9,5 +9,5 @@ window.addEventListener("load", () => {
 
   document.body.append(canvas);
 
-  game(canvas);
+  draw(canvas);
 });
