@@ -69,7 +69,7 @@ context.translate(y*2,y);
 CreateSquare(1,1)
 }
 
-// выдаем размер пикселя динозавра
+// выдаем размер пикселя динозавра (масштаб)
 CreateDino(20);
 context.translate(200,-250);
 
@@ -121,4 +121,3 @@ function CreateCactus(y,l){
 
 CreateCactus(10,randomInt(0,20));
 }
-
