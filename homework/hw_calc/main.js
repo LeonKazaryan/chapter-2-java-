@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
 
         const value = input.value;
         let groups = Array.from(value.matchAll(RexFind));
-        
+    
         groups.flat(Infinity);
         
         let firstNum = Number(groups[0][1]);
