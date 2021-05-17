@@ -28,8 +28,9 @@ window.addEventListener("load", () => {
             div.innerHTML = (firstNum*secondNum);
         } else if(sign == ":"){
             div.innerHTML = (firstNum/secondNum);
-        }
+        } 
 
+        
         // if(checkbox.checked){
         //     console.log("чекед");
         // }
