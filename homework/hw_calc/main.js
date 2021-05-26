@@ -1,4 +1,4 @@
-let RexFind = /^(\d+)(\+|\-|\*|\:)(\d+)/g;
+let RexFind = /^(\d+)(\+|\-|\*|\:|\/)(\d+)/g;
 
 window.addEventListener("load", () => {
     let input = document.forms['calc'].elements['expression'];
@@ -26,16 +26,13 @@ window.addEventListener("load", () => {
             div.innerHTML = (firstNum-secondNum);
         } else if(sign == "*"){
             div.innerHTML = (firstNum*secondNum);
-        } else if(sign == ":"){
+        } else if(sign == ":" || sign == "/"){
             div.innerHTML = (firstNum/secondNum);
-        } 
+        }         
 
-        
         // if(checkbox.checked){
         //     console.log("чекед");
         // }
-     
-        // console.log(firstNum+sign+secondNum);
 
         // div.innerHTML = groups;
     })
