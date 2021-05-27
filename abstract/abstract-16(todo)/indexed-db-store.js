@@ -1,63 +1,21 @@
-class ToDoItem {
-    id;
-    title;
-    description;
-    isDone;
-    createdAt;
-    doneAt;
-    //constructor'ы (Создавать пункты (Описание, выставляем дату создания))
-    constructor(id, title, description, isDone, createdAt, doneAt) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.isDone = isDone;
-        this.createdAt = createdAt;
-        this.doneAt = doneAt;
-    }
-    static from(title, description, createdAt) { // налету
-        return new ToDoItem(null, title, description, false, createdAt, null);
-    }
-    static fromDb ( { id, title, description, isDone, createdAt, doneAt } ) { // из базы
-        return new ToDoItem(id, title, description, isDone, createdAt, doneAt);
-    }
-    // как ни странно set id (установка id)
-    setId(id) {
-        this.id = id;
-    }
-    //- Отмечать выполненость (Отмечаем флажок, Выставляем дату)
-    //- Отменять отметку выполненности (Убираем флажок, отчищаем дату)
-    markIsDone(doneAt) {
-        this.isDone = true;
-        this.doneAt = doneAt;
-    }
-    markUndone() {
-        this.isDone = false;
-        this.doneAt = null;
-    }
-    //Изменять пункты (только описание)
-    update(title, description) {
-        this.title = title;
-        this.description = description;
-    }
-}
-
-class ToDoList {
+class IndexedDBStore {
     static DB_NAME = "todo";
     static VERSION = 1;
-
+  
     /**
      * @type {IDBDatabase}
      */
     db;
-
+  
     constructor(db) {
         this.db = db;
     }
+  
     static open() {
         return new Promise((resolve, reject) => {
-
-            const request = window.indexedDB.open(ToDoList.DB_NAME, ToDoList.VERSION);
-
+  
+            const request = window.indexedDB.open(IndexedDBStore.DB_NAME, IndexedDBStore.VERSION);
+  
             request.addEventListener("error", (e) => {
                 console.log(request, e);
                 reject(e);
@@ -67,22 +25,24 @@ class ToDoList {
                 const db = request.result;
             
                 db.addEventListener("error", e => {
-                console.log("ToDoList", "Error", e);
+                console.log("IndexedDBStore", "Error", e);
                 });
         
-                resolve(new ToDoList(db));
+                resolve(new IndexedDBStore(db));
             });
-
-            request.addEventListener("upgradeneeded", ToDoList.upgrade);
+  
+            request.addEventListener("upgradeneeded", IndexedDBStore.upgrade);
         });
     }
-
+    
+  
+  
     /**
      * @param {IDBVersionChangeEvent} e 
      */
     static upgrade(e) {
-        console.log("ToDoList", `Upgrade from ${e.oldVersion} to ${e.newVersion}`);
-
+        console.log("IndexedDBStore", `Upgrade from ${e.oldVersion} to ${e.newVersion}`);
+  
         // e.target.transaction.abort();
         
         const db = e.target.result;
@@ -95,12 +55,42 @@ class ToDoList {
             }
         }
     }
+  
+    
+    seed(mockToDoList) {
+      return new Promise((resolve, reject) => {
+        const transaction = this.db.transaction("todo", "readwrite");
+  
+        transaction.addEventListener("complete", e => {
+          console.log("IndexedDBStore", "Cохранили", e);
+          resolve();
+        });
+  
+        transaction.addEventListener("error", e => {
+          reject(e);
+        });
+    
+        const store = transaction.objectStore("todo");
+  
+        store.count().onsuccess = e => {
+          if (e.target.result > 0) {
+            return;
+          }
+  
+          mockToDoList(50).forEach(item => {
+            store.add(item);
+          });
+        }
+  
+      });
+    }
+    
     //махинации над toDoItem
     insert(toDoItem) {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction("todo", "readwrite");
             transaction.addEventListener("complete", e => {
-                console.log("ToDoList", "Cохранили", e);
+                console.log("IndexedDBStore", "Cохранили", e);
                 resolve(toDoItem);
             });
             transaction.addEventListener("error", e => {
@@ -117,7 +107,7 @@ class ToDoList {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction("todo", "readwrite");
             transaction.addEventListener("complete", e => {
-                console.log("ToDoList", "Cохранили", e);
+                console.log("IndexedDBStore", "Cохранили", e);
                 resolve(toDoItem);
             });
             transaction.addEventListener("error", e => {
@@ -131,7 +121,7 @@ class ToDoList {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction("todo", "readwrite");
             transaction.addEventListener("complete", e => {
-                console.log("ToDoList", "Cохранили", e);
+                console.log("IndexedDBStore", "Cохранили", e);
                 resolve();
             });
             transaction.addEventListener("error", e => {
@@ -141,15 +131,14 @@ class ToDoList {
             store.delete(toDoItem.id);
         });
     }
-
     getList() {
         return new Promise((resolve, reject) => {
-
+  
             const result = [];
-
+  
             const transaction = this.db.transaction("todo", "readwrite");
             transaction.addEventListener("complete", e => {
-                console.log("ToDoList", "Cохранили", e);
+                console.log("IndexedDBStore", "Cохранили", e);
                 resolve(result);
             });
             transaction.addEventListener("error", e => {
@@ -163,10 +152,10 @@ class ToDoList {
                   cursor.value.id = cursor.key;
                   
                   result.push(ToDoItem.fromDb(cursor.value));
-
+  
                   cursor.continue();
                 }
             }
         });
     }
-}
+  }
