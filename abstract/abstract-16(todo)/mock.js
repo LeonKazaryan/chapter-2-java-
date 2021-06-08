@@ -214,6 +214,4 @@ const mockToDo = () => {
     const doneDate = mockDoneDate(isDone, createdDate);
     return new ToDoItem(null, mockString(), mockString(), isDone, createdDate, doneDate); 
 }
-
 const mockToDoList = createArray(mockToDo);
-

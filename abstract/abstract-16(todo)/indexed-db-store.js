@@ -135,7 +135,6 @@ class IndexedDBStore {
         return new Promise((resolve, reject) => {
   
             const result = [];
-  
             const transaction = this.db.transaction("todo", "readwrite");
             transaction.addEventListener("complete", e => {
                 console.log("IndexedDBStore", "Cохранили", e);
