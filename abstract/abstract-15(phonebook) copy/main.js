@@ -1,12 +1,12 @@
 window.addEventListener("load", async () => {
   const db = await DbContext.open();
-  await db.seed(mockContacts);
+  await db.seed(mockAirports);
 
   const input = document.forms["search"].elements["query"];
 
-  const renderContacts = _renderContacts(document.getElementById("contacts"));
+  const renderAirports = _renderAirports(document.getElementById("airports"));
   const search = _search(db)
-  const handleInput = _handleInput(search, renderContacts);
+  const handleInput = _handleInput(search, renderAirports);
 
   handleLocation(handleInput, input);
   
@@ -31,8 +31,8 @@ const updateHistory = query => {
   window.history.pushState(null, "Поиск: " + query, "?query=" + window.encodeURIComponent(query));
 }
 
-const _handleInput = (search, renderContacts) => async query  => {
-  renderContacts(await search(query));
+const _handleInput = (search, renderAirports) => async query  => {
+  renderAirports(await search(query));
 }
 
 const _search = db => async query => {
@@ -46,28 +46,28 @@ const _search = db => async query => {
 
   let predicate;
   if (query.search(/^\+?\d+$/) >= 0) {
-    predicate = contact => {
-      return contact.phone.includes(query);
+    predicate = airport => {
+      return airport.code.includes(query);
     };
   } else {
-    predicate = contact => {
-      return contact.name.includes(query);
+    predicate = airport => {
+      return airport.city.includes(query);
     };
   }
 
-  return await db.findContacts(predicate);
+  return await db.findAirports(predicate);
 }
 
-const _renderContacts = container => contacts => {
+const _renderAirports = container => airports => {
   while (container.firstChild) {
     container.firstChild.remove();
   }
 
-  container.append(...contacts.map(renderContact));
+  container.append(...airports.map(renderAirports));
 };
 
-const renderContact = contact => {
-  return $("div", {}, [contact.name, contact.phone, contact.email].join(" "));
+const renderAirport = airport => {
+  return $("div", {}, [airport.city, airport.code, airport.price].join(" "));
 }
 
 const handleLocation = (handleInput, input) => {

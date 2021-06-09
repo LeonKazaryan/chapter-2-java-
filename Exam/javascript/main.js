@@ -1,12 +1,14 @@
+
 window.addEventListener("load", async () => {
   const db = await DbContext.open();
-  await db.seed(mockContacts);
+  // await db.clear();
+  await db.seed(mockCities);
 
   const input = document.forms["search"].elements["query"];
 
-  const renderContacts = _renderContacts(document.getElementById("contacts"));
+  const renderCities = _renderCities(document.getElementById("cities"));
   const search = _search(db)
-  const handleInput = _handleInput(search, renderContacts);
+  const handleInput = _handleInput(search, renderCities);
 
   handleLocation(handleInput, input);
   
@@ -31,8 +33,8 @@ const updateHistory = query => {
   window.history.pushState(null, "Поиск: " + query, "?query=" + window.encodeURIComponent(query));
 }
 
-const _handleInput = (search, renderContacts) => async query  => {
-  renderContacts(await search(query));
+const _handleInput = (search, renderCities) => async query  => {
+  renderCities(await search(query));
 }
 
 const _search = db => async query => {
@@ -40,34 +42,31 @@ const _search = db => async query => {
   if (!query) {
     return [];
   }
-
-  // validation
-  // разобрать сложный запрос
-
   let predicate;
   if (query.search(/^\+?\d+$/) >= 0) {
-    predicate = contact => {
-      return contact.phone.includes(query);
+    predicate = city => {
+      return city.code.includes(query);
     };
   } else {
-    predicate = contact => {
-      return contact.name.includes(query);
+    predicate = city => {
+      return city.price.includes(query);
     };
   }
 
-  return await db.findContacts(predicate);
+  return await db.findCities(predicate);
 }
 
-const _renderContacts = container => contacts => {
+
+const _renderCities = container => cities => {
   while (container.firstChild) {
     container.firstChild.remove();
   }
 
-  container.append(...contacts.map(renderContact));
+  container.append(...cities.map(renderCitiy));
 };
 
-const renderContact = contact => {
-  return $("div", {}, [contact.name, contact.phone, contact.email].join(" "));
+const renderCitiy = city => {
+  return $("div", {}, [city.city, city.code, city.price].join(" "));
 }
 
 const handleLocation = (handleInput, input) => {
