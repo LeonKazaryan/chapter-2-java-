@@ -6,7 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/window.css">
+
+    <script src="js/search.js"></script>
+    <script src="js/date.js"></script>
+    <script src="js/submit.js"></script>
+
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
@@ -16,11 +23,7 @@
 
     <link rel="stylesheet" href="../../chapter 1/fontawesome-free-5.15.1-web/css/all.css">
 
-    <script src="javascript/dom.js"></script>
-    <script src="javascript/main.js"></script>
-    <script src="javascript/html.js"></script>
-    <script src="javascript/mock.js"></script>
-    <script src="javascript/schema.js"></script>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css"> -->
 
 </head>
 <body>
@@ -47,6 +50,110 @@
 
         <div class="tagline__title_small">
             Крутой выход, если вы застряли в стране
+        </div>
+
+    </div>
+
+    <form class = "container" name="myform">
+
+        <div class = "from">
+            <div class = "container__name container__name_from"> Откуда </div>
+
+            <input type="text" name="elastic" id="elastic" class="text-input">
+            <ul class="elastic text-ul">
+                <li class="li-from"> Yerevan <li> 
+                <li class="li-from"> Nur-Sultan <li> 
+                <li class="li-from"> Gyumri <li> 
+                <li class="li-from"> Almaty <li> 
+                <li class="li-from"> Shymkent <li> 
+                <li class="li-from"> Moskow <li> 
+                <li class="li-from"> Warsaw <li> 
+                <li class="li-from"> Aphens <li> 
+                <li class="li-from"> Constantinople <li> 
+                <li class="li-from"> Ribeiro <li> 
+                <li class="li-from"> Troitsk <li> 
+                <li class="li-from"> Boston <li> 
+                <li class="li-from"> Baniachang <li> 
+                <li class="li-from"> La Azliita <li> 
+                <li class="li-from"> ДЊernГЎ Hora <li> 
+                <li class="li-from"> Oneop <li> 
+                <li class="li-from"> Daqiao <li> 
+                <li class="li-from"> TГЎriba <li> 
+                <li class="li-from"> San Diego <li> 
+                <li class="li-from"> Suita <li> 
+                <li class="li-from"> Casselman <li> 
+                <li class="li-from"> Niort <li> 
+                <li class="li-from"> Viloco <li> 
+                <li class="li-from"> Zhongfeng <li> 
+                <li class="li-from"> JesГєs MarГ­a <li> 
+            </ul>
+        </div>
+
+        <div class = "to">
+            <div class = "container__name container__name_from"> Куда </div>
+
+            <input type="text" name="elastic-2" id="elastic-2" class="text-input">
+            <ul class="elastic-2 text-ul">
+                <li class="li-to"> Yerevan <li> 
+                <li class="li-to"> Nur-Sultan <li> 
+                <li class="li-to"> Gyumri <li> 
+                <li class="li-to"> Almaty <li> 
+                <li class="li-to"> Shymkent <li> 
+                <li class="li-to"> Moskow <li> 
+                <li class="li-to"> Warsaw <li> 
+                <li class="li-to"> Aphens <li> 
+                <li class="li-to"> Constantinople <li> 
+                <li class="li-to"> Ribeiro <li> 
+                <li class="li-to"> Troitsk <li> 
+                <li class="li-to"> Boston <li> 
+                <li class="li-to"> Baniachang <li> 
+                <li class="li-to"> La Azliita <li> 
+                <li class="li-to"> ДЊernГЎ Hora <li> 
+                <li class="li-to"> Oneop <li> 
+                <li class="li-to"> Daqiao <li> 
+                <li class="li-to"> TГЎriba <li> 
+                <li class="li-to"> San Diego <li> 
+                <li class="li-to"> Suita <li> 
+                <li class="li-to"> Casselman <li> 
+                <li class="li-to"> Niort <li> 
+                <li class="li-to"> Viloco <li> 
+                <li class="li-to"> Zhongfeng <li> 
+                <li class="li-to"> JesГєs MarГ­a <li> 
+            </ul>
+        </div>
+
+        <div class = "from-when">
+            <div class="container__name container__name_from-when"> Когда улетаем </div>
+            <input type="date" name="date-from" id="date-from" class="text-input">
+            <div class="error" id="error_current-date"> Дата вылета не может быть меньше текущей! </div>
+            <div class="error" id="error_time-trip-2"> Дата прилёта должна быть больше вылета! </div>
+        </div>
+
+        <div class = "back-when">
+            <div class="container__name container__name_back-when"> Когда прилетаем</div>
+            <input type="date" disabled name="date-back" id="date-back" class="text-input">
+            <div class="error" id="error_current-date_2"> Дата прилета не может быть меньше текущей! </div>
+            <div class="error" id="error_time-trip"> Дата прилёта должна быть больше вылета! </div>
+        </div>
+
+        <div class="button">
+            <button type="submit" id="button" name="button" class="button-input" disabled>Отправить</button>
+        </div>
+
+    </form>
+
+    <div class="window" id="window">
+        
+        <div class="window__window">
+            <div class="window__title">
+                Поздравляем! Билеты куплены!
+            </div>
+
+            <div class="window__information" id="information">
+
+            </div>
+
+            <button class="cancel" id="cancel" class="window__cancel"> Ура! </button>
         </div>
 
     </div>

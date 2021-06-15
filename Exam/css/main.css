@@ -1,0 +1,156 @@
+:root{
+    --main-color: #fffffff5;
+    --second-color: #3b3b3bf5;
+    --shadowWhite: 1px 1px 1px white;
+    --shadowBlack: 3px 3px 3px black;
+}
+
+body, html{
+    width:100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-image: url("planesbody.jpg");
+}
+
+li{
+    list-style-type: none;
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+li:hover{
+    cursor: pointer;
+}
+
+
+.header{
+    padding-top:0;
+    padding-bottom: 30px;
+    display:flex;
+    flex-direction: row;
+    font-size: 40px;
+    justify-content: space-between;
+}
+
+    .header__title{
+        color:var(--second-color);
+        font-family: 'Architects Daughter', cursive;
+        padding-left:100px;
+        text-shadow: var(--shadowWhite);
+    }
+
+    .header__icons{
+        padding-right:30px;
+        color:var(--main-color);
+        text-shadow: var(--shadowBlack);
+        width:100px;
+        display:flex;
+        justify-content: space-between;
+    }
+
+
+.tagline{
+    width:100%;
+    padding-top:50px;
+    /* background-color: white; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Seymour One', sans-serif;
+    text-shadow: var(--shadowBlack);
+    color:white;
+}
+
+    .tagline__title{
+        font-size: 40px;
+    }
+
+    .tagline__title_small{
+        font-size:20px;
+        margin-top:10px;
+    }
+
+
+.container{
+    margin-top:20px;
+    display:flex;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-around;
+}
+
+    .text-input{
+        padding:10px;
+        border-radius:10px;
+        background-color: var(--main-color);
+        color: var(--second-color);
+        font-family: 'Seymour One', sans-serif;
+        width:200px;
+    }
+
+    .text-ul{
+        display:flex;
+        flex-direction: column;
+        font-family: 'Architects Daughter', cursive;
+        height:150px;
+        overflow:hidden;
+    }
+
+
+    .from, .to, .from-when, .back-when{
+        padding:20px;
+    }
+
+
+        .container__name{
+            font-family: 'Seymour One', sans-serif;
+        }
+
+    .from-when, .back-when{
+        display:flex;
+        flex-direction: column;
+        width:264px;
+    }
+
+        .error{
+            color:red;
+            font-family: 'Seymour One', sans-serif;
+            align-self: center;
+            text-align: center;
+            text-shadow: var(--shadowBlack);
+        }
+
+        #error_current-date, #error_current-date_2, #error_time-trip, #error_time-trip-2{
+            display:none;
+        }
+
+        #date-back{
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+    .button{
+        display:flex;
+        width:350px;
+        height:40px;
+        margin-top:80px;
+    }
+
+        .button-input{
+            padding:10px;
+            border-radius:10px;
+            width:50%;
+            cursor: pointer;
+            font-family: 'Seymour One', sans-serif;
+            transition: all 200ms linear;
+        }
+
+        .button-input:hover{
+            background-color: var(--second-color)
+        }
+    

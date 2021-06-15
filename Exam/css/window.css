@@ -1,0 +1,50 @@
+.window{
+    display:none;
+}
+
+    .window__window{
+        background-color: powderblue;
+        width:90%;
+        height:50%;
+        position: absolute;
+        right: 5%;
+        top: 30%;
+        border-radius: 10px;
+        opacity:95%;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        display:flex;
+    }
+
+    .window__title{
+        padding:25px;
+        color:red;
+        font-family: 'Seymour One', sans-serif;
+        text-shadow: var(--shadowBlack);
+        font-size:35px;
+    }
+
+    .window__information{
+        padding:25px;
+        align-self:center;
+        font-family: 'Seymour One', sans-serif;
+        font-size:20px;
+    }
+
+    #cancel{
+        width:200px;
+        background-color: rgb(251, 251, 251);
+        border-radius: 10px;
+        height:50px;
+        font-family: 'Seymour One', sans-serif;
+        text-shadow: var(--shadowWhite);
+        cursor: pointer;
+        transition: all 200ms linear;
+    }
+
+        #cancel:hover{
+            background-color: var(--second-color);
+            color:white;
+            text-shadow: var(--shadowBlack);
+        }
